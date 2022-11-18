@@ -33,6 +33,7 @@ class GenericButton: UIButton {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleToFill
         image.clipsToBounds = true
+        image.tintColor = .white
         return image
     }()
 }

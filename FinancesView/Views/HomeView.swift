@@ -31,7 +31,7 @@ class HomeView: UIView {
         let button = GenericButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configureButton(image: "plus", text: "Nova Receita")
-        button.backgroundColor = .green
+        button.backgroundColor = UIColor(red: 91.0/255.0, green: 173.0/255.0, blue: 52.0/255.0, alpha: 1.0)
         button.addTarget(self, action: #selector(tappedNewRevenueButton), for: .touchUpInside)
         return button
     }()
@@ -40,7 +40,7 @@ class HomeView: UIView {
         let button = GenericButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configureButton(image: "minus", text: "Nova Despesa")
-        button.backgroundColor = .red
+        button.backgroundColor = UIColor(red: 194.0/255.0, green: 67.0/255.0, blue: 67.0/255.0, alpha: 1.0)
         button.addTarget(self, action: #selector(tappedNewExpenseButton), for: .touchUpInside)
         return button
     }()
