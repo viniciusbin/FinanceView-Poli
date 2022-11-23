@@ -10,9 +10,6 @@ import UIKit
 protocol NewRevenueViewControllerProtocol: AnyObject {
     func updateBudget(value: Double)
 }
-    
-    
-
 
 class NewRevenueViewController: UIViewController {
     
@@ -21,9 +18,6 @@ class NewRevenueViewController: UIViewController {
     func subscribeDelegate(delegate: NewRevenueViewControllerProtocol) {
         self.delegate = delegate
     }
-    
-    
-    
     var newRevenueView: NewRevenueView?
     
     override func loadView() {
@@ -69,7 +63,7 @@ class NewRevenueViewController: UIViewController {
         let expense = StoreValues.shared.storeExpense.reduce(0, +)
         let revenue = StoreValues.shared.storeRevenue.reduce(0, +)
         let balance = revenue - expense
-            
+        
         self.delegate?.updateBudget(value: balance)
         dismiss(animated: true)
         

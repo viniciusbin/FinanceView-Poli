@@ -11,19 +11,13 @@ class HomeViewController: UIViewController {
     var newRevenueVC = NewRevenueViewController()
     var newExpenseVC = NewExpenseViewController()
     var homeView: HomeView?
- 
+    
     var budgetInfo = [BudgetInfo]()
     
     override func loadView() {
         self.homeView = HomeView()
         self.view = homeView
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("will appear disparado")
-        
-    }
-   
+    }    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +26,8 @@ class HomeViewController: UIViewController {
         homeView?.delegate(delegate: self)
         newRevenueVC.subscribeDelegate(delegate: self)
         newExpenseVC.subscribeExpenseDelegate(delegate: self)
-        
-        
-        
-        
         title = "Minhas Finanças"
         fillData()
-        print("did load disparado")
     }
     
     private func fillData() {
