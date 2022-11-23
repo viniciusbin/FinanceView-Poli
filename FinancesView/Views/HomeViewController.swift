@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     var newRevenueVC = NewRevenueViewController()
+    var newExpenseVC = NewExpenseViewController()
     var homeView: HomeView?
  
     var budgetInfo = [BudgetInfo]()
@@ -20,6 +21,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         print("will appear disparado")
+        
     }
    
     
@@ -29,6 +31,8 @@ class HomeViewController: UIViewController {
         homeView?.tableView.dataSource = self
         homeView?.delegate(delegate: self)
         newRevenueVC.subscribeDelegate(delegate: self)
+        newExpenseVC.subscribeExpenseDelegate(delegate: self)
+        
         
         
         
@@ -79,14 +83,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController: HomeViewProtocol {
     func actionRevenueButton() {
-        let navVC = UINavigationController(rootViewController: NewRevenueViewController())
+        
+        let navVC = UINavigationController(rootViewController: newRevenueVC)
         navVC.navigationBar.prefersLargeTitles = true
         navVC.navigationBar.backgroundColor = .white
-        self.navigationController?.present(navVC, animated: true)
+        present(navVC, animated: true)
     }
     
     func actionExpenseButton() {
-        let navVC = UINavigationController(rootViewController: NewExpenseViewController())
+        let navVC = UINavigationController(rootViewController: newExpenseVC)
         navVC.navigationBar.prefersLargeTitles = true
         navVC.navigationBar.backgroundColor = .white
         self.navigationController?.present(navVC, animated: true)
@@ -94,15 +99,19 @@ extension HomeViewController: HomeViewProtocol {
     }
 }
 
-extension HomeViewController: NewRevenueViewControllerProtocol{
-    func testDelegate() {
-        print("delegate funcionando")
+extension HomeViewController: NewRevenueViewControllerProtocol {
+    func updateBudget(value: Double) {
+        homeView?.budgetView.updatedBudgetLabel.text = String(format: "R$: %.2f", value)
+    }
+}
+
+extension HomeViewController: NewExpenseViewControllerProtocol {
+    func updateBalance(value: Double) {
+        homeView?.budgetView.updatedBudgetLabel.text = String(format: "R$: %.2f", value)
     }
     
     
 }
-
-
 
 
 

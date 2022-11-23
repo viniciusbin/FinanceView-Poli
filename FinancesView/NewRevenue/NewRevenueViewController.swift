@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NewRevenueViewControllerProtocol: AnyObject {
-    func testDelegate()
+    func updateBudget(value: Double)
 }
     
     
@@ -63,12 +63,15 @@ class NewRevenueViewController: UIViewController {
             alert(title: "Ops", message: "Categoria vazia, por favor preencha.")
             return
         }
-//        var valueDouble = Double(valueTF) ?? 0.0
-//        StoreValues.shared.storeRevenue.append(valueDouble)
+        guard let valueDouble = Double(valueTF) else { return }
+        StoreValues.shared.storeRevenue.append(valueDouble)
         
-        
-        print("Tocou salvar")
-        self.delegate?.testDelegate()
+        let expense = StoreValues.shared.storeExpense.reduce(0, +)
+        let revenue = StoreValues.shared.storeRevenue.reduce(0, +)
+        let balance = revenue - expense
+            
+        self.delegate?.updateBudget(value: balance)
+        dismiss(animated: true)
         
     }
 }
