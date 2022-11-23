@@ -7,7 +7,22 @@
 
 import UIKit
 
+protocol NewRevenueViewControllerProtocol: AnyObject {
+    func testDelegate()
+}
+    
+    
+
+
 class NewRevenueViewController: UIViewController {
+    
+    private weak var delegate: NewRevenueViewControllerProtocol?
+    
+    func subscribeDelegate(delegate: NewRevenueViewControllerProtocol) {
+        self.delegate = delegate
+    }
+    
+    
     
     var newRevenueView: NewRevenueView?
     
@@ -48,6 +63,13 @@ class NewRevenueViewController: UIViewController {
             alert(title: "Ops", message: "Categoria vazia, por favor preencha.")
             return
         }
+//        var valueDouble = Double(valueTF) ?? 0.0
+//        StoreValues.shared.storeRevenue.append(valueDouble)
+        
+        
         print("Tocou salvar")
+        self.delegate?.testDelegate()
+        
     }
 }
+

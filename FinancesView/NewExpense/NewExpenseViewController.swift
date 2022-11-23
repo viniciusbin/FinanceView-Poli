@@ -11,6 +11,8 @@ class NewExpenseViewController: UIViewController {
     
     var newExpenseView: NewExpenseView?
     
+
+    
     override func loadView() {
         self.newExpenseView = NewExpenseView()
         self.view = newExpenseView
@@ -44,6 +46,7 @@ class NewExpenseViewController: UIViewController {
             alert(title: "Ops", message: "Campo Valor vazio, por favor preencha.")
             return
         }
-        print("Tocou salvar")
+        guard let valueDouble = Double(valueTF) else { return }
+        StoreValues.shared.storeExpense.append(valueDouble)
     }
 }

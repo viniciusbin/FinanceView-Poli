@@ -8,7 +8,7 @@
 import UIKit
 
 class BudgetView: UIView {
-    
+
     lazy var lineviewBudget: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +29,7 @@ class BudgetView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 22)
-        label.text = "R$ 1.000,00"
+        label.text = "R$ 0,00"
         label.textColor = .black
         return label
     }()

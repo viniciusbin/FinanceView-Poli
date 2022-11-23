@@ -8,8 +8,9 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    
+    var newRevenueVC = NewRevenueViewController()
     var homeView: HomeView?
+ 
     var budgetInfo = [BudgetInfo]()
     
     override func loadView() {
@@ -17,13 +18,23 @@ class HomeViewController: UIViewController {
         self.view = homeView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("will appear disparado")
+    }
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         homeView?.tableView.delegate = self
         homeView?.tableView.dataSource = self
         homeView?.delegate(delegate: self)
+        newRevenueVC.subscribeDelegate(delegate: self)
+        
+        
+        
         title = "Minhas Finanças"
         fillData()
+        print("did load disparado")
     }
     
     private func fillData() {
@@ -51,7 +62,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(budgetInfo.count)
+        
         return budgetInfo.count
         
     }
@@ -82,6 +93,15 @@ extension HomeViewController: HomeViewProtocol {
         
     }
 }
+
+extension HomeViewController: NewRevenueViewControllerProtocol{
+    func testDelegate() {
+        print("delegate funcionando")
+    }
+    
+    
+}
+
 
 
 
